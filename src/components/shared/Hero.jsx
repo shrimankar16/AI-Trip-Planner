@@ -8,7 +8,7 @@ const Hero = () => {
     const navigate = useNavigate()
 
     return (
-        <section className='min-h-screen relative overflow-hidden bg-linear-to-br from-indigo-50 to-blue-100 flexCenter py-22'>
+        <section className='min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-100 flexCenter py-22'>
             {/* Decorative Blobs */}
             <div className='absolute top-0 left-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30' />
             <div className='absolute top-0 right-0 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30' />
@@ -22,7 +22,7 @@ const Hero = () => {
                     </span>
                     <span className='text-sm font-medium text-indigo-900'>AI-Powered Travel Agent v2.0</span>
                 </div>
-                <h1 className='text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-6 tracking-tight leading-tight'>Design Your Dream Getaway in Seconds</h1>
+                <h1 className='text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-6 tracking-tight leading-tight'>Design Your Dream Getaway in Seconds</h1>
                 <p className='text-xl text-gray-600 mb-10 max-w-2xl mx-auto'>Tell us where you want to go, and let our advanced AI craft the perfect itinerary tailored to your budget and interests.</p>
                 <Button onClick={()=>navigate('/create-trip')} className={'group relative inline-flexCenter px-8! py-8! text-lg font-bold text-white transition-all duration-200 bg-indigo-600 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 hover:scale-105 shadow-xl'}>
                     Start Planning

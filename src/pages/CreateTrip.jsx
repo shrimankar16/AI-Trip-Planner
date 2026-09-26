@@ -138,7 +138,7 @@ const CreateTrip = () => {
                             <div className='space-y-6'>
                                 <div className='text-center mb-8'>
                                     <h3 className='mb-2'>Where's your next adventure?</h3>
-                                    <p>Select your destination and duration (max 5 days).</p>
+                                    <p>Select your destination and duration (max 5 Day).</p>
                                 </div>
 
                                 <div className='space-y-4'>

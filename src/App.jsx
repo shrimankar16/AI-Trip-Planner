@@ -5,12 +5,12 @@ import Home from './pages/Home'
 import CreateTrip from './pages/CreateTrip'
 import { Toaster } from 'sonner'
 import TripDetails from './pages/TripDetails'
-import MyTrips from './pages/MyTrips'
+import MyTrips from './pages/MyTrip'
 
 const App = () => {
   return (
-    <>
-    <Toaster />
+    <div>
+      <Toaster />
       <Header />
       <Routes>
         <Route path='/' element={<Home />}/>
@@ -18,7 +18,7 @@ const App = () => {
         <Route path='/trips/:tripId' element={<TripDetails />}/>
         <Route path='/my-trips' element={<MyTrips />}/>
       </Routes>
-    </>
+    </div>
   )
 }
 
