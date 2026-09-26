@@ -1,17 +1,15 @@
 import { ArrowRight, Calendar, CheckCircle, Loader2 } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { BUDGET_OPTIONS, TRAVELER_OPTIONS } from '../assets/data'
 import { toast } from 'sonner'
 import { generateTripWithAI } from '../services/aiModel'
-import LoginDialog from '../components/shared/LoginDialog'
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../services/firebaseConfig'
 import { useNavigate } from 'react-router-dom'
 
 const CreateTrip = () => {
     const placesApiKey = import.meta.env.VITE_GOOGLE_PLACES_API_KEY
-    const [openDialog, setOpenDialog] = useState(false)
     const [step, setStep] = useState(1)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -42,10 +40,6 @@ const CreateTrip = () => {
     }
 
     const generateTrip = async () => {
-        const user = localStorage.getItem("user")
-        if (!user) {
-            return setOpenDialog(true)
-        }
         if (!formData.destination || !formData.noOfDays || !formData.budget || !formData.traveler) {
             return toast.error('Please fill all details.')
         }
@@ -53,7 +47,6 @@ const CreateTrip = () => {
             return toast.error("AI can currently generate up to 5 days only.")
         }
         setLoading(true)
-        //    console.log(formData)
 
         const DYNAMIC_PROMPT = `Generate a travel plan for Location: ${formData?.destination?.label} for ${formData?.noOfDays} days for a ${formData?.traveler} traveler on ${formData?.budget} budget. Return the result strictly as a single JSON object using camelCase keys, the travel plan with trip note and must feature hotelsOptions array, each hotel with hotelName, hotelAddress, priceRange, imageUrl, rating, description, and a coordinates, alongside an itinerary array of daily plans. Each day must include a dayNumber, theme, and an activities array, where each activity contains activityName, description, imageUrl, ticketPrice, timeRange, timeToTravel and coordinates`;
 
@@ -72,7 +65,6 @@ const CreateTrip = () => {
         try {
             console.log("SAVE STARTED");
 
-            const user = JSON.parse(localStorage.getItem("user"));
             const docId = Date.now().toString();
 
             console.log("BEFORE SETDOC");
@@ -80,7 +72,7 @@ const CreateTrip = () => {
             await setDoc(doc(db, "trips-ai", docId), {
                 userSelection: formData,
                 tripData: tripdata,
-                userEmail: user?.email,
+                userEmail: "guest@trippy.app", // Default email for all users
                 id: docId
             });
 
@@ -227,7 +219,6 @@ const CreateTrip = () => {
                     </div>
                 </div>
             </div>
-            <LoginDialog open={openDialog} onClose={() => setOpenDialog(false)} onLoginSuccess={generateTrip} />
         </div>
     )
 }

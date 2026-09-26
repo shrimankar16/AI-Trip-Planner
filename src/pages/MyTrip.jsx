@@ -10,23 +10,34 @@ const MyTrips = () => {
     const navigate = useNavigate()
 
     const getUserTrips = async () => {
-        const user = JSON.parse(localStorage.getItem("user"))
-        if (!user) {
-            return navigate('/')
-        }
-
-        const q = query(collection(db, "trips-ai"), where("userEmail", "==", user?.email));
+        // Fetch all trips from the last 30 days (to avoid loading too many)
+        const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+        const q = query(
+            collection(db, "trips-ai"),
+            where("id", ">=", thirtyDaysAgo.toString())
+        );
+        
         try {
             const querySnapshot = await getDocs(q);
-            // Map everything into one array first
             const allTrips = querySnapshot.docs.map((doc) => ({
-                id: doc.id,  // always keep the ID!
+                id: doc.id,
                 ...doc.data()
-                // doc.data() is never undefined for query doc snapshots
             }));
             setUserTrips(allTrips)
         } catch (error) {
-             console.log("Error fetching userTrips", error)
+            console.log("Error fetching trips", error)
+            // If the query fails, just fetch recent trips without filter
+            try {
+                const simpleQuery = query(collection(db, "trips-ai"));
+                const snapshot = await getDocs(simpleQuery);
+                const trips = snapshot.docs.slice(0, 20).map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setUserTrips(trips);
+            } catch (err) {
+                console.log("Error with simple query too", err);
+            }
         }
     }
 
