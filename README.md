@@ -7,14 +7,20 @@ An intelligent travel planning application powered by Google Gemini AI that gene
 ![Firebase](https://img.shields.io/badge/Firebase-12.7-orange)
 ![Gemini AI](https://img.shields.io/badge/Gemini-3.7--Flash-green)
 
+## 🌐 Live Demo
+
+**🚀 [View Live Application](https://trippy-planner-three.vercel.app/)**
+
+Experience the AI-powered trip planner in action! Generate personalized travel itineraries with hotel recommendations and day-by-day activities without any login required.
+
 ## ✨ Features
 
 - 🤖 **AI-Powered Trip Generation** - Uses Google Gemini 3.7 Flash to create comprehensive travel plans
 - 🏨 **Hotel Recommendations** - Get curated hotel options with pricing, ratings, and locations
 - 📅 **Day-by-Day Itinerary** - Detailed daily activities with timing, travel duration, and ticket prices
 - 📍 **Interactive Maps** - Integration with Google Places API for location search and photos
-- 👤 **User Authentication** - Secure Google OAuth login
-- 💾 **Trip History** - Save and manage all your generated trips
+- 🚀 **No Login Required** - Generate and view trips instantly without authentication
+- 💾 **Trip Storage** - All trips are automatically saved and accessible
 - 📱 **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 - 🎨 **Modern UI** - Built with Tailwind CSS and Radix UI components
 
@@ -235,18 +241,17 @@ ai-trip-planner/
 
 ### Creating a Trip
 
-1. **Sign In** - Click "Login" and authenticate with Google
-2. **Navigate to Create Trip** - Click "Create Trip" or the + button
-3. **Fill Trip Details**:
+1. **Navigate to Create Trip** - Click "Create Trip" or the + button
+2. **Fill Trip Details**:
    - **Step 1**: Select destination using Google Places autocomplete
    - **Step 2**: Choose number of days (1-5) and budget (Budget, Moderate, Luxury)
    - **Step 3**: Select traveler type (Solo, Couple, Family, Friends)
-4. **Generate Trip** - Click "Generate Trip" and wait for AI to create your itinerary
-5. **View & Save** - Your trip is automatically saved to your account
+3. **Generate Trip** - Click "Generate Trip" and wait for AI to create your itinerary
+4. **View & Explore** - Your trip is automatically saved and displayed with full details
 
 ### Viewing Trips
 
-- **My Trips** - Click "My Trips" in the header to see all saved trips
+- **My Trips** - Click "My Trips" in the header to see all generated trips
 - **Trip Details** - Click any trip card to view:
   - Trip summary with destination, budget, and duration
   - 3 recommended hotels with details
